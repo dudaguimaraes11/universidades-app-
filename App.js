@@ -106,79 +106,103 @@ return (
   </SafeAreaView>
 );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffe3e3',
-    paddingTop: 50, 
+    backgroundColor: '#1b1b1b',
+    paddingTop: 50,
   },
+
   headerTitle: {
-    fontSize: 30,
-    fontWeight: '800',
+    fontSize: 28,
+    fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 20,
-    color: '#910030', // Tomato color
+    color: '#D4AF37',
+    textShadowColor: '#740001',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 4,
   },
-  loader: {
-    marginTop: 50,
+
+  // Barra de pesquisa
+ search: {
+  backgroundColor: '#F3E5C3',
+  marginHorizontal: 15,
+  marginBottom: 20,
+  paddingHorizontal: 18,
+  height: 52,
+  borderRadius: 12,
+  borderWidth: 2,
+  borderColor: '#8B5A2B',
+  color: '#3B1F0B',
+  fontSize: 16,
+
+  shadowColor: '#000',
+  shadowOpacity: 0.25,
+  shadowOffset: {
+    width: 0,
+    height: 3,
   },
+  shadowRadius: 5,
+  elevation: 5,
+},
+
   list: {
     paddingHorizontal: 15,
     paddingBottom: 20,
   },
+
   card: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    marginBottom: 15,
+    backgroundColor: '#3A0D0D',
+    borderRadius: 15,
+    marginBottom: 18,
     flexDirection: 'row',
     padding: 15,
-    // Sombra para iOS
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowOffset: { width: 0, height: 4 },
+    borderWidth: 2,
+    borderColor: '#D4AF37',
+
+    shadowColor: '#D4AF37',
+    shadowOpacity: 0.4,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
     shadowRadius: 6,
-    // Sombra para Android
-    elevation: 3,
+    elevation: 6,
   },
+
   image: {
-    width: 80,
-    height: 100,
+    width: 90,
+    height: 120,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: '#D4AF37',
+    backgroundColor: '#fff',
     marginRight: 15,
   },
+
   info: {
     flex: 1,
     justifyContent: 'center',
   },
-  title: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginBottom: 5,
-    color: '#333',
-    marginBottom: 5,
-  }, 
-  category: {
-    fontSize: 12,
-    color: '#888',
-    marginBottom: 8,
-    fontWeight: '500',
-  },
-  price: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#910030',
-  }, 
-  search: {
-  backgroundColor: '#fff',
-  marginHorizontal: 15,
-  marginBottom: 20,
-  paddingHorizontal: 15,
-  height: 45,
-  borderRadius: 25,
-  borderWidth: 2,
-  borderColor: '#910030',
-  fontSize: 16,
-  color: '#000',
-},
-});
 
+  title: {
+    fontSize: 19,
+    fontWeight: 'bold',
+    color: '#F5E6C8',
+    marginBottom: 8,
+  },
+
+  category: {
+    fontSize: 15,
+    color: '#D4AF37',
+    marginBottom: 6,
+    fontWeight: '600',
+  },
+
+  price: {
+    fontSize: 16,
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+  },
+});
