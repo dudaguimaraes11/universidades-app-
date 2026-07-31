@@ -1,17 +1,36 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList, ActivityIndicator, SafeAreaView, Image } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  ActivityIndicator,
+  SafeAreaView,
+  Image,
+  TextInput
+} from 'react-native';
 
 export default function App() {
 
-  const [universities, setUniversities] = useState([]);
+  const [witches, setWitches] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [filteredWitches, setFilteredWitches] = useState([]);
 
   // Executa uma vez assim que o aplicativo inicia
   useEffect(() => {
-    fetchUniversities();
+    fetchWitches();
   }, []);
 
-const fetchUniversities = async () => {
+  useEffect(() => {
+  const resultado = witches.filter((item) =>
+    item.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  setFilteredWitches(resultado);
+}, [search, witches]);
+
+const fetchWitches = async () => {
   try {
     // Faz a requisição na Fake Store API
     const response = await fetch('https://hp-api.onrender.com/api/characters');
@@ -20,16 +39,18 @@ const fetchUniversities = async () => {
     const data = await response.json();
 
     // Atualiza o estado da lista
-    setUniversities(data);
+    setWitches(data);
+
+    setFilteredWitches(data); 
   } catch (error) {
-    console.error("Erro ao buscar as universidades: ", error);
+    console.error("Erro ao buscar as bruxas: ", error);
   } finally {
     // Remove o indicador de carregamento
     setLoading(false);
   }
 };
 
-// Renderiza cada item da lista (cada universidade)
+
 const renderItem = ({ item }) => (
   <View style={styles.card}>
     <Image
@@ -60,6 +81,14 @@ return (
       💫 Personagens de Harry Potter 💫
     </Text>
 
+  <TextInput
+  style={styles.search}
+  placeholder="🔍 Pesquisar personagem..."
+  placeholderTextColor="#777"
+  value={search}
+  onChangeText={setSearch}
+/>
+
     {loading ? (
       <ActivityIndicator
         size="large"
@@ -68,8 +97,8 @@ return (
       />
     ) : (
       <FlatList
-        data={universities}
-        keyExtractor={(item, index) => item.toString()}
+        data={filteredWitches}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={renderItem}
         contentContainerStyle={styles.list}
       />
@@ -138,6 +167,18 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#910030',
-  }
+  }, 
+  search: {
+  backgroundColor: '#fff',
+  marginHorizontal: 15,
+  marginBottom: 20,
+  paddingHorizontal: 15,
+  height: 45,
+  borderRadius: 25,
+  borderWidth: 2,
+  borderColor: '#910030',
+  fontSize: 16,
+  color: '#000',
+},
 });
 
